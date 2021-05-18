@@ -2,6 +2,7 @@ package com.casacodigo.hernani.config.validation;
 
 public class ErroDeFormularioDto {
 	
+	
 	private String campo;
 	private String erro;
 	
