@@ -1,25 +1,31 @@
-package br.com.casacodigo.hernani.controler;
-
+package com.casacodigo.hernani.novoautor;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import br.com.casacodigo.hernani.controler.form.AutorForm;
-import br.com.casacodigo.hernani.modelo.Autor;
-
 @RestController
-public class AutoresController  {
+public class AutorControler  {
 	
 	@PersistenceContext
 	private EntityManager entitymanager;
+	@Autowired
+	private EmailAutorDuplicado  emailAutorDuplicado;
+	
+	@InitBinder
+	public void init(WebDataBinder binder) {
+		
+		binder.addValidators(emailAutorDuplicado);
+	}
 	
 	@PostMapping(value="/autores")
 	@Transactional

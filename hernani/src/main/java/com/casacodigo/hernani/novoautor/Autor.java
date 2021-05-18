@@ -1,4 +1,4 @@
-package br.com.casacodigo.hernani.modelo;
+package com.casacodigo.hernani.novoautor;
 
 import java.time.LocalDateTime;
 

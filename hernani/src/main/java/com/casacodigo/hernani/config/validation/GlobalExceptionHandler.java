@@ -1,4 +1,4 @@
-package br.com.casacodigo.hernani.config.validation;
+package com.casacodigo.hernani.config.validation;
 
 import java.util.ArrayList;
 import java.util.List;

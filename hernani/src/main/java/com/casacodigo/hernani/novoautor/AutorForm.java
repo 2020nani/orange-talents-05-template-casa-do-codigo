@@ -1,4 +1,4 @@
-package br.com.casacodigo.hernani.controler.form;
+package com.casacodigo.hernani.novoautor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.casacodigo.hernani.modelo.Autor;
+
 
 public class AutorForm {
 
@@ -39,9 +39,10 @@ public class AutorForm {
 		return new Autor(this.nome, this.email, this.descricao);
 	}
 
-	
-	
-	
-	
+	public String getEmail() {
+		return email;
+	}
+
+
 
 }
