@@ -1,15 +1,16 @@
 package com.casacodigo.hernani.config.validation;
 
-public class ErroDeFormularioDto {
-	
-	
+public class ErroDeFormularioForm {
+
 	private String campo;
 	private String erro;
 	
-	public ErroDeFormularioDto(String campo, String erro) {
+	public ErroDeFormularioForm(String campo, String erro) {
 		this.campo = campo;
 		this.erro = erro;
 	}
+
+
 
 	public String getCampo() {
 		return campo;

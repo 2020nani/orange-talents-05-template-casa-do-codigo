@@ -9,13 +9,19 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Categoria {
-	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	 @NotBlank
-	 @Column(unique=true)
-     private String nome;
+
+	@NotBlank
+	@Column(unique = true)
+	private String nome;
+
+	@Deprecated
+	public Categoria() {
+		super();
+	}
 
 	public Categoria(@NotBlank String nome) {
 		super();
@@ -26,7 +32,5 @@ public class Categoria {
 	public String toString() {
 		return "Categoria [id=" + id + ", nome=" + nome + "]";
 	}
-	 
-	
-	 
+
 }

@@ -28,6 +28,11 @@ public class Autor {
 	private String descricao;
 	
 	private LocalDateTime instanteCriado = LocalDateTime.now();
+	
+	@Deprecated
+	public Autor() {
+		super();
+	}
 
 	public Autor(
 			 @NotBlank  String nome,
