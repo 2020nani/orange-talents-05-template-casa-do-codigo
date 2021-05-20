@@ -2,11 +2,11 @@ package com.casacodigo.hernani.novoautor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
+import com.casacodigo.hernani.beanscustomizado.UniqueValue;
+
 
 
 
@@ -17,6 +17,7 @@ public class AutorForm {
 	
 	@NotBlank
 	@Email(message = "Por favor digite um email valido")
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotNull
