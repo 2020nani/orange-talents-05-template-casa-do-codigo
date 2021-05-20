@@ -7,13 +7,16 @@ import java.util.function.Function;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.casacodigo.hernani.beanscustomizado.IdValido;
 import com.casacodigo.hernani.beanscustomizado.UniqueValue;
 import com.casacodigo.hernani.cadastrocategoria.Categoria;
 import com.casacodigo.hernani.cadastrocategoria.CategoriaRepository;
@@ -54,9 +57,11 @@ public class LivroForm {
 	private LocalDate dataPublicacao;
 
 	@NotNull
+	@IdValido(domainClass = Categoria.class, fieldName = "id")
 	private Long categoriaId;
 
 	@NotNull
+	@IdValido(domainClass = Autor.class, fieldName = "id")
 	private Long autorId;
 
 	public LivroForm(@NotBlank @Size(max = 100) String titulo, @NotBlank @Size(max = 500) String resumo,
@@ -82,8 +87,12 @@ public class LivroForm {
 	}
 
 	public Livro novoLivro(AutorRepository autorrepository, CategoriaRepository categoriarepository) {
-		Autor autor = autorrepository.findById(autorId).get();
-		Categoria categoria = categoriarepository.findById(categoriaId).get();
+		@NotNull Autor autor = autorrepository.findById(autorId).get();
+		@NotNull Categoria categoria = categoriarepository.findById(categoriaId).get();
+		
+		Assert.state(autor!=null,"Você esta querendo cadastrar um livro para um autor que nao existe no banco "+autorId);
+		Assert.state(categoria!=null,"Você esta querendo cadastrar um livro para uma categoria que nao existe no banco "+categoriaId);
+		
 		return new Livro(titulo, resumo, preco, sumario, numeroPaginas, isbn, dataPublicacao, autor, categoria);
 	}
 
