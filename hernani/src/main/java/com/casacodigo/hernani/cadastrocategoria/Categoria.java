@@ -33,4 +33,10 @@ public class Categoria {
 		return "Categoria [id=" + id + ", nome=" + nome + "]";
 	}
 
+	public String getNome() {
+		return nome;
+	}
+	
+	
+
 }
