@@ -3,6 +3,7 @@ package com.casacodigo.hernani.config.validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
@@ -55,8 +57,20 @@ public class GlobalExceptionHandler {
 		
 		return dto;
 	}
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(NoSuchElementException.class)
+	public List<ErroDeFormularioForm> handle( NoSuchElementException exception) {
+		List<ErroDeFormularioForm> dto = new ArrayList<>();
+		
+			String mensagem = "Nao foi encontrado dados ";
+			ErroDeFormularioForm erro = new ErroDeFormularioForm(mensagem);
+			dto.add(erro);
+		
+		return dto;
+	}
 
 	
-
+	
 
 }
