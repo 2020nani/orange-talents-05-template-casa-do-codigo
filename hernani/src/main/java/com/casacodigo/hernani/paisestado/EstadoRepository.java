@@ -12,6 +12,16 @@ import org.springframework.stereotype.Repository;
 public interface EstadoRepository extends JpaRepository<Estado, Long> {
 
 	boolean existsByNomeAndPaisNome(@NotBlank String nome, String nome2);
+
+	Optional<Estado> findByNomeAndPaisId(String estadoNome, Long paisId);
+
+	boolean existsByPaisId(Long paisId);
+
+	boolean existsByNomeAndPaisId(String estadoNome, Long paisId);
+
+	
+
+
 	
 
 }

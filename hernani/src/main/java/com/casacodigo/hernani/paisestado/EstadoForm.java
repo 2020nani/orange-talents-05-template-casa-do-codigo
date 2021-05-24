@@ -32,6 +32,4 @@ public class EstadoForm {
 		return new Estado(this.nome, pais);
 	}
 
-
-	
 }
